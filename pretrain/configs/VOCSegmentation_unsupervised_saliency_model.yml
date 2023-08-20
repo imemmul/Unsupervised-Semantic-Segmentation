@@ -7,14 +7,14 @@ train_db_name: VOCSegmentation
 train_db_kwargs:
    saliency: unsupervised_model
 num_workers: 8
-train_batch_size: 128
+train_batch_size: 8
 
 # Model
-backbone: resnet50
+backbone: resnet50 # NOTE as i heard probably transformers will do better job as backbone, they are able to calculate end-end representation.
 backbone_kwargs:
    dilated: True
    pretraining: imagenet_moco 
-   moco_state_dict: /path/to/moco_v2_800ep_pretrain.pth.tar # see MoCo repo
+   moco_state_dict: /home/emir/Desktop/dev/myResearch/weights/moco_v2_800ep_pretrain.pth.tar # see MoCo repo
 model_kwargs:
    ndim: 32
    head: linear

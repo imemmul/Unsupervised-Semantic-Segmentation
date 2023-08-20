@@ -5,7 +5,8 @@
 import torch
 import numpy as np
 import collections
-from torch._six import string_classes, int_classes
+from torch._six import string_classes
+int_classes = int
 
 
 def collate_custom(batch):
@@ -27,7 +28,7 @@ def collate_custom(batch):
     elif isinstance(batch[0], string_classes):
         return batch
 
-    elif isinstance(batch[0], collections.Mapping):
+    elif isinstance(batch[0], collections.abc.Mapping):
         batch_modified = {key: collate_custom([d[key] for d in batch]) for key in batch[0] if key.find('idx') < 0}
         return batch_modified
 
